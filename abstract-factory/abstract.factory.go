@@ -1,4 +1,4 @@
-package abstract_factory
+package abstractFactory
 
 type RoomSide string
 
@@ -11,6 +11,7 @@ const (
 
 type Wall interface {
 	WallRoomSide
+	Brash(color int)
 }
 
 type Maze interface {
@@ -18,7 +19,7 @@ type Maze interface {
 }
 
 type Room interface {
-	SetSide(side RoomSide, wall *WallRoomSide)
+	SetSide(side RoomSide, wall WallRoomSide)
 }
 
 type Door interface {

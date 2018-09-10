@@ -1,26 +1,31 @@
-package abstract_factory
+package abstractFactory
 
 type MazeGame struct {
+	Door Door
 }
 
-func (m *MazeGame) CreateMaze(f AbstractFactory) {
+func (m *MazeGame) CreateMaze(f AbstractFactory) Maze {
 	aMaze := f.MakeMaze()
 	r1 := f.MakeRoom(1)
 	r2 := f.MakeRoom(2)
-	door := f.MakeDoor(&r1, &r2)
+	var door WallRoomSide = f.MakeDoor(&r1, &r2)
 
-	doorAsRoomSide := WallRoomSide(door)
+	m.Door = door
 
 	aMaze.AddRoom(&r1)
 	aMaze.AddRoom(&r2)
 
-	r1.SetSide(North, f.MakeWall())
-	r1.SetSide(East, &doorAsRoomSide)
-	r1.SetSide(South, f.MakeWall())
-	r1.SetSide(West, f.MakeWall())
+	wall := f.MakeWall()
 
-	r2.SetSide(North, f.MakeWall())
-	r2.SetSide(East, f.MakeWall())
-	r2.SetSide(South, f.MakeWall())
-	r2.SetSide(West, &door)
+	r1.SetSide(North, (wall).(WallRoomSide))
+	r1.SetSide(East, door)
+	r1.SetSide(South, (WallRoomSide)(f.MakeWall()))
+	r1.SetSide(West, (WallRoomSide)(f.MakeWall()))
+
+	r2.SetSide(North, (WallRoomSide)(f.MakeWall()))
+	r2.SetSide(East, (WallRoomSide)(f.MakeWall()))
+	r2.SetSide(South, (WallRoomSide)(f.MakeWall()))
+	r2.SetSide(West, door)
+
+	return aMaze
 }
