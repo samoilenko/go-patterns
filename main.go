@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-	commonBuilder := &abstractFactory.CommonMazeBuilder{}
 	factory := &abstractFactory.MazeGame{}
+
+	commonBuilder := &abstractFactory.CommonMazeBuilder{}
 	maze := factory.CreateMaze(commonBuilder)
 
 	//a:= factory.Door.(*abstractFactory.CommonDoor)
@@ -23,8 +24,8 @@ func main() {
 
 	fmt.Println(maze)
 
-
-
 	bombedBuilder := abstractFactory.BombedMazeBuilder{}
-	factory.CreateMaze(&bombedBuilder)
+	bombedMaze := factory.CreateMaze(&bombedBuilder).(abstractFactory.BombedMaze)
+
+	fmt.Println(bombedMaze.Rooms)
 }
