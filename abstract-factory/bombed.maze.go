@@ -1,5 +1,11 @@
 package abstractFactory
 
+import "fmt"
+
+func init() {
+	fmt.Println("B Loading bombed maze.")
+}
+
 type BombedMazeBuilder struct {
 }
 
@@ -49,4 +55,11 @@ type BombedRoom struct {
 
 func (br BombedRoom) SetSide(side RoomSide, wall WallRoomSide) {
 	br.Walls[side] = wall
+
+	// We can do something special if this is a bombed wall
+	if _, ok := wall.(*BombedWall); ok {
+		_ = fmt.Sprint("Yeee")
+	} else {
+		_ = fmt.Sprintf("%T\n", wall)
+	}
 }

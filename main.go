@@ -5,6 +5,12 @@ import (
 	"go-patterns/abstract-factory"
 )
 
+func init() {
+	// init functions calls in the alphabetic orders
+	// https://medium.com/golangspec/init-functions-in-go-eac191b3860a
+	fmt.Println("M Starting the program.")
+}
+
 func main() {
 	factory := &abstractFactory.MazeGame{}
 
@@ -17,15 +23,16 @@ func main() {
 
 	//if commonDoor1, ok := factory.Door.(*abstractFactory.CommonDoor);ok{
 	//	commonDoor = commonDoor1
-	//	commonDoor.Title = "CV"
+	//	commonDoor.Title = "Back door"
 	//}
 
-	commonDoor.Title = "PPC"
+	commonDoor.Title = "Entrance hall"
 
-	fmt.Println(maze)
+	fmt.Printf("%T \n", maze)
 
 	bombedBuilder := abstractFactory.BombedMazeBuilder{}
-	bombedMaze := factory.CreateMaze(&bombedBuilder).(abstractFactory.BombedMaze)
+	//bombedMaze := factory.CreateMaze(&bombedBuilder).(abstractFactory.BombedMaze)
+	bombedMaze := factory.CreateMaze(&bombedBuilder)
 
-	fmt.Println(bombedMaze.Rooms)
+	fmt.Printf("%T \n", bombedMaze)
 }

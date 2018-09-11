@@ -1,5 +1,11 @@
 package abstractFactory
 
+import "fmt"
+
+func init() {
+	fmt.Println("M Loading maze game.")
+}
+
 type MazeGame struct {
 	Door Door
 }

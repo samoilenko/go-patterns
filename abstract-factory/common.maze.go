@@ -1,5 +1,11 @@
 package abstractFactory
 
+import "fmt"
+
+func init() {
+	fmt.Println("C Loading common maze.")
+}
+
 type CommonMazeBuilder struct {
 }
 

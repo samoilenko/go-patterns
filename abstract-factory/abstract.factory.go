@@ -1,5 +1,11 @@
 package abstractFactory
 
+import "fmt"
+
+func init() {
+	fmt.Println("A Loading abstract factory.")
+}
+
 type RoomSide string
 
 const (
