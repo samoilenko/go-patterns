@@ -17,8 +17,6 @@ func main() {
 	commonBuilder := &abstractFactory.CommonMazeBuilder{}
 	maze := factory.CreateMaze(commonBuilder)
 
-	//a:= factory.Door.(*abstractFactory.CommonDoor)
-
 	var commonDoor *abstractFactory.CommonDoor = factory.Door.(*abstractFactory.CommonDoor)
 
 	//if commonDoor1, ok := factory.Door.(*abstractFactory.CommonDoor);ok{
