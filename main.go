@@ -12,25 +12,40 @@ func init() {
 }
 
 func main() {
-	factory := &abstractFactory.MazeGame{}
+	mazeGame := &abstractFactory.MazeGame{}
 
 	commonBuilder := &abstractFactory.CommonMazeBuilder{}
-	maze := factory.CreateMaze(commonBuilder)
+	maze := mazeGame.CreateMaze(commonBuilder)
 
-	var commonDoor *abstractFactory.CommonDoor = factory.Door.(*abstractFactory.CommonDoor)
+	//var commonDoor *abstractFactory.CommonDoor = mazeGame.Door.(*abstractFactory.CommonDoor)
 
 	//if commonDoor1, ok := factory.Door.(*abstractFactory.CommonDoor);ok{
 	//	commonDoor = commonDoor1
 	//	commonDoor.Title = "Back door"
 	//}
 
-	commonDoor.Title = "Entrance hall"
+	//commonDoor.Title = "Entrance hall"
 
 	fmt.Printf("%T \n", maze)
 
+	commonMaze := maze.(*abstractFactory.CommonMaze)
+
+	//doors := [2]*CommonDoor{}
+
+	for _, room := range commonMaze.Rooms {
+		fmt.Printf("===== %T\n", room)
+		//commonRoom := room.(*CommonRoom)
+		//for _, wall := range (*CommonRoom)(room).Walls {
+		//	if commonDoor, ok := wall.(*CommonDoor); ok {
+		//		doors[i] = commonDoor
+		//	}
+		//}
+	}
+
+
 	bombedBuilder := abstractFactory.BombedMazeBuilder{}
-	//bombedMaze := factory.CreateMaze(&bombedBuilder).(abstractFactory.BombedMaze)
-	bombedMaze := factory.CreateMaze(&bombedBuilder)
+	//bombedMaze := mazeGame.CreateMaze(&bombedBuilder).(abstractFactory.BombedMaze)
+	bombedMaze := mazeGame.CreateMaze(&bombedBuilder)
 
 	fmt.Printf("%T \n", bombedMaze)
 }

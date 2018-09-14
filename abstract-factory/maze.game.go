@@ -7,7 +7,7 @@ func init() {
 }
 
 type MazeGame struct {
-	Door Door
+
 }
 
 func (m *MazeGame) CreateMaze(f AbstractFactory) Maze {
@@ -15,8 +15,6 @@ func (m *MazeGame) CreateMaze(f AbstractFactory) Maze {
 	r1 := f.MakeRoom(1)
 	r2 := f.MakeRoom(2)
 	var door WallRoomSide = f.MakeDoor(&r1, &r2)
-
-	m.Door = door
 
 	aMaze.AddRoom(&r1)
 	aMaze.AddRoom(&r2)
