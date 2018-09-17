@@ -34,7 +34,17 @@ func main() {
 
 	for _, room := range commonMaze.Rooms {
 		fmt.Printf("===== %T\n", room)
-		//commonRoom := room.(*CommonRoom)
+
+		if _, ok := room.(*abstractFactory.CommonRoom);ok{
+			fmt.Println("Yeahh")
+		}
+
+
+		//cR := (abstractFactory.CommonRoom)(room)
+		commonRoom := room.(*abstractFactory.CommonRoom)
+
+		r := (abstractFactory.Room)(commonRoom)
+		fmt.Printf("===== %T\n", r)
 		//for _, wall := range (*CommonRoom)(room).Walls {
 		//	if commonDoor, ok := wall.(*CommonDoor); ok {
 		//		doors[i] = commonDoor

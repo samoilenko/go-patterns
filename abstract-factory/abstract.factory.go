@@ -21,7 +21,7 @@ type Wall interface {
 }
 
 type Maze interface {
-	AddRoom(r *Room)
+	AddRoom(r Room)
 }
 
 type Room interface {

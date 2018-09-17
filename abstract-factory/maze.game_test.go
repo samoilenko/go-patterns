@@ -34,24 +34,22 @@ func TestCommonMaze(t *testing.T) {
 
 	commonMaze := maze.(*CommonMaze)
 
-	//doors := [2]*CommonDoor{}
+	doors := [2]*CommonDoor{}
 
-	for _, room := range commonMaze.Rooms {
+	for i, room := range commonMaze.Rooms {
 		fmt.Printf("===== %T\n", room)
-		//commonRoom := room.(*CommonRoom)
-		//for _, wall := range (*CommonRoom)(room).Walls {
-		//	if commonDoor, ok := wall.(*CommonDoor); ok {
-		//		doors[i] = commonDoor
-		//	}
-		//}
+		for _, wall := range room.(*CommonRoom).Walls {
+			if commonDoor, ok := wall.(*CommonDoor); ok {
+				doors[i] = commonDoor
+			}
+		}
 	}
 
-	//doors[0].Title = "Entrance hall"
-	//
-	//if doors[0].Title != doors[1].Title {
-	//	t.Errorf("The door title has different title")
-	//}
+	doors[0].Title = "Entrance hall"
 
+	if doors[0].Title != doors[1].Title {
+		t.Errorf("The door title has different title")
+	}
 }
 
 func TestBombedMaze(t *testing.T) {
@@ -64,4 +62,24 @@ func TestBombedMaze(t *testing.T) {
 	}
 
 	fmt.Printf("%T \n", bombedMaze)
+
+	maze := bombedMaze.(*BombedMaze)
+
+	doors := [2]*CommonDoor{}
+
+	for i, room := range maze.Rooms {
+		fmt.Printf("===== %T\n", room)
+		for _, wall := range room.(*BombedRoom).Walls {
+			if commonDoor, ok := wall.(*CommonDoor); ok {
+				doors[i] = commonDoor
+			}
+		}
+	}
+
+	doors[0].Title = "Entrance hall"
+
+	if doors[0].Title != doors[1].Title {
+		t.Errorf("The door title has different title")
+	}
+
 }

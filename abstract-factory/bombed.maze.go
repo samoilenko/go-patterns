@@ -10,7 +10,7 @@ type BombedMazeBuilder struct {
 }
 
 func (bmb BombedMazeBuilder) MakeMaze() Maze {
-	return BombedMaze{Rooms: make([]*Room, 4)}
+	return &BombedMaze{Rooms: make([]Room, 0, 4)}
 }
 
 func (bmb BombedMazeBuilder) MakeWall() Wall {
@@ -18,7 +18,7 @@ func (bmb BombedMazeBuilder) MakeWall() Wall {
 }
 
 func (bmb BombedMazeBuilder) MakeRoom(i int) Room {
-	return BombedRoom{Walls: make(map[RoomSide]WallRoomSide, 4)}
+	return &BombedRoom{Walls: make(map[RoomSide]WallRoomSide, 4)}
 }
 
 func (bmb BombedMazeBuilder) MakeDoor(r1 *Room, r2 *Room) Door {
@@ -28,12 +28,11 @@ func (bmb BombedMazeBuilder) MakeDoor(r1 *Room, r2 *Room) Door {
 // ---------------
 
 type BombedMaze struct {
-	Rooms []*Room
+	Rooms []Room
 }
 
-func (bm BombedMaze) AddRoom(r *Room) {
+func (bm *BombedMaze) AddRoom(r Room) {
 	bm.Rooms = append(bm.Rooms, r)
-
 }
 
 // -----Wall----
@@ -53,7 +52,7 @@ type BombedRoom struct {
 	Walls map[RoomSide]WallRoomSide
 }
 
-func (br BombedRoom) SetSide(side RoomSide, wall WallRoomSide) {
+func (br *BombedRoom) SetSide(side RoomSide, wall WallRoomSide) {
 	br.Walls[side] = wall
 
 	// We can do something special if this is a bombed wall

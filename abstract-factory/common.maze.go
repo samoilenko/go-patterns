@@ -28,14 +28,14 @@ func (cmb *CommonMazeBuilder) MakeRoom(i int) Room {
 // ------------
 
 type CommonMaze struct {
-	Rooms []*Room
+	Rooms []Room
 }
 
-func (cm *CommonMaze) AddRoom(r *Room) {
+func (cm *CommonMaze) AddRoom(r Room) {
 	cm.Rooms = append(cm.Rooms, r)
 }
 
-//----------------------------------------
+//-----------------Wall-----------------------
 type CommonWall struct {
 	r1 *Room
 	r2 *Room
@@ -49,7 +49,7 @@ func (cw *CommonWall) Brash(color int) {
 
 }
 
-//----------------------
+//----------Door------------
 type CommonDoor struct {
 	Title string
 }
@@ -58,7 +58,7 @@ func (cd *CommonDoor) BuildWall() {
 
 }
 
-//--------------------------------------
+//-------------Room-------------------------
 type CommonRoom struct {
 	Walls map[RoomSide]WallRoomSide
 }

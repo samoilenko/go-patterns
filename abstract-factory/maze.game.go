@@ -16,8 +16,8 @@ func (m *MazeGame) CreateMaze(f AbstractFactory) Maze {
 	r2 := f.MakeRoom(2)
 	var door WallRoomSide = f.MakeDoor(&r1, &r2)
 
-	aMaze.AddRoom(&r1)
-	aMaze.AddRoom(&r2)
+	aMaze.AddRoom(r1)
+	aMaze.AddRoom(r2)
 
 	wall := f.MakeWall()
 
